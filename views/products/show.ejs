@@ -13,5 +13,8 @@
     </ul>
     <a href="/products/<%=product._id %>/edit">Edit</a>
     <a href="/products">All products</a>
+    <form action="/products/<%=product._id %>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
 </body>
 </html>
