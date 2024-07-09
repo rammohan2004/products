@@ -14,10 +14,13 @@ mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true,
 
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
-app.listen(3000,()=>{
-    console.log("app is running on port 3000")
+
+
+app.get('/products',async(req,res)=>{
+    const products=await Product.find({});
+    res.render("products/index.ejs",{products});
 })
 
-app.get('/',(req,res)=>{
-    res.render("index");
+app.listen(3000,()=>{
+    console.log("app is running on port 3000")
 })
