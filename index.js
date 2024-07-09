@@ -27,8 +27,16 @@ const categories=['fruit','vegetable','dairy']
 
 
 app.get('/products',async(req,res)=>{
-    const products=await Product.find({});
-    res.render("products/index.ejs",{products});
+    const {category}=req.query;
+    if(category){
+        const products=await Product.find({category:category});
+        res.render("products/index.ejs",{products,category});
+    }
+    else{
+        const products=await Product.find({});
+        res.render("products/index.ejs",{products,category:"All"});
+    }
+    
 })
 
 
@@ -69,6 +77,7 @@ app.delete('/products/:id',async(req,res)=>{
     const deletedProduct=await Product.findByIdAndDelete(id);
     res.redirect('/products');
 })
+
 app.listen(3000,()=>{
     console.log("app is running on port 3000")
 })
