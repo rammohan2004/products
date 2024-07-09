@@ -1,9 +1,9 @@
 const express=require('express')
 const path=require('path');
 const app=express()
-
+const Product=require('./models/product')
 const mongoose=require('mongoose')
-mongoose.connect('mongodb://localhost:27017/shopApp', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>{
     console.log("connection open")
 })
