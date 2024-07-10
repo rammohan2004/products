@@ -35,6 +35,8 @@ app.get('/products',async(req,res)=>{
     else{
         const products=await Product.find({});
         res.render("products/index.ejs",{products,category:"All"});
+
+        
     }
     
 })
