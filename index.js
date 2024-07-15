@@ -5,7 +5,7 @@ const Product=require('./models/product')
 const mongoose=require('mongoose')
 var methodOverride = require('method-override')
 
-mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/farmStand')
 .then(()=>{
     console.log("connection open")
 })
@@ -25,7 +25,6 @@ app.use(methodOverride('_method'))
 
 const categories=['fruit','vegetable','dairy']
 
-
 app.get('/products',async(req,res)=>{
     const {category}=req.query;
     if(category){
@@ -35,8 +34,6 @@ app.get('/products',async(req,res)=>{
     else{
         const products=await Product.find({});
         res.render("products/index.ejs",{products,category:"All"});
-
-        
     }
     
 })
